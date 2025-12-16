@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Debug Helper</string>
+    <string name="info">Info</string>
+    <string name="test">Test</string>
+    <string name="about">About</string>
+    <string name="basic_info">Basic info</string>
+    <string name="device">DEVICE</string>
+    <string name="os">OS</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="brand">Brand</string>
+    <string name="model">Model</string>
+    <string name="device_l">Device</string>
+    <string name="prjname">Project Name</string>
+    <string name="product">Product</string>
+    <string name="android_version">Android Version</string>
+    <string name="sdk_level">SDK Level</string>
+    <string name="security_patch">Security Patch</string>
+    <string name="vendor_spl">Vendor SPL</string>
+    <string name="fingerprint">Fingerprint</string>
+    <string name="build_time">Build Time</string>
+    <string name="hardware">Hardware</string>
+    <string name="active_slot">Active Slot</string>
+    <string name="kernel_version">Kernel Version</string>
+</resources>
