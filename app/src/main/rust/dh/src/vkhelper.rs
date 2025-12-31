@@ -1,13 +1,12 @@
-use jni::{ JNIEnv, objects::{ JClass, JString }, sys::jstring };
+use jni::{ JNIEnv, objects::JClass, sys::jstring };
 use jni_fn::jni_fn;
 use vulkano::instance::{Instance, InstanceCreateInfo};
 use vulkano::VulkanLibrary;
 
-#[jni_fn("top.kmiit.debughelper")]
+#[jni_fn("top.kmiit.debughelper.utils.GpuUtils")]
 pub fn getVulkanVersionNative (
     env: JNIEnv,
     _class: JClass,
-    _name: JString
 ) -> jstring {
     let version_str = match get_physical_device_version() {
         Ok(v) => v,
