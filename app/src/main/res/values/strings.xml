@@ -79,4 +79,12 @@
     <string name="camera_id">Camera ID</string>
     <string name="resolution">Resolution</string>
     <string name="back">Back</string>
+    <string name="start">Start</string>
+    <string name="constellation_gps">GPS</string>
+    <string name="constellation_sbas">SBAS</string>
+    <string name="constellation_glonass">GLONASS</string>
+    <string name="constellation_qzss">QZSS</string>
+    <string name="constellation_beidou">BEIDOU</string>
+    <string name="constellation_galileo">GALILEO</string>
+    <string name="constellation_irnss">IRNSS</string>
 </resources>

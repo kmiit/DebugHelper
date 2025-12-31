@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlin.math.abs
 import kotlin.math.sin
 
 enum class AudioChannel {
@@ -196,7 +197,7 @@ class AudioTestViewModel(application: Application) : AndroidViewModel(applicatio
                             // Calculate amplitude
                             var sum = 0L
                             for (i in 0 until read) {
-                                sum += Math.abs(buffer[i].toInt())
+                                sum += abs(buffer[i].toInt())
                             }
                             _recordingAmplitude.value = (sum / read).toInt()
                         }
