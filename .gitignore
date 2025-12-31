@@ -9,3 +9,6 @@
 /captures
 .externalNativeBuild
 .cxx
+
+# Rust
+Cargo.lock
