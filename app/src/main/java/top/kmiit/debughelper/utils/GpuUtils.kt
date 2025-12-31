@@ -5,6 +5,7 @@ import android.opengl.EGLConfig
 import android.opengl.GLES20
 import android.util.Log
 
+const val TAG = "GpuViewModel"
 data class GpuInfo(
     val renderer: String = "",
     val vendor: String = "",
@@ -17,8 +18,9 @@ object GpuUtils {
     init {
         try {
             System.loadLibrary("dh")
+            Log.d(TAG, "Load libdh successfully")
         } catch (e: UnsatisfiedLinkError) {
-            Log.e("GpuViewModel", "Failed to load library dh", e)
+            Log.e(TAG, "Failed to load library dh", e)
         }
     }
     external fun getVulkanVersionNative(): String

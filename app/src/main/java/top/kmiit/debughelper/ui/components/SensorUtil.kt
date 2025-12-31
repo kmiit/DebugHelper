@@ -92,7 +92,7 @@ fun Sensor.Show(onTestClick: (Sensor) -> Unit) {
             if (sensor.batchable()) {
                 Icon(
                     imageVector = MiuixIcons.Basic.ArrowRight,
-                    contentDescription = "Test",
+                    contentDescription = stringResource(R.string.test),
                     modifier = Modifier.clickable { onTestClick(sensor) }
 
                 )

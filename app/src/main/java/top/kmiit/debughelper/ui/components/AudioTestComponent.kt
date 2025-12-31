@@ -21,9 +21,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
+import top.kmiit.debughelper.R
 import top.kmiit.debughelper.ui.viewmodel.AudioChannel
 import top.kmiit.debughelper.ui.viewmodel.AudioTestViewModel
 import top.yukonga.miuix.kmp.basic.Button
@@ -72,7 +74,7 @@ fun AudioTestComponent(
             .nestedScroll(scrollBehavior.nestedScrollConnection)
     ) {
         Text(
-            text = "Output Devices",
+            text = stringResource(R.string.output_devices),
             style = MiuixTheme.textStyles.title2,
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
@@ -104,7 +106,7 @@ fun AudioTestComponent(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "Input Devices",
+            text = stringResource(R.string.input_devices),
             style = MiuixTheme.textStyles.title2,
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
@@ -153,7 +155,7 @@ fun AudioOutputDeviceItem(
                     onClick = onStop,
                     enabled = true
                 ) {
-                     Text(text = "Stop")
+                     Text(stringResource(R.string.stop))
                 }
             } else {
                 Row {
@@ -163,7 +165,7 @@ fun AudioOutputDeviceItem(
                             enabled = !isAnyRecording && !isAnyPlaying,
                             modifier = Modifier.weight(1f)
                         ) {
-                             Text(text = "Left")
+                             Text(stringResource(R.string.left))
                         }
                         Spacer(modifier = Modifier.width(8.dp))
                         Button(
@@ -171,7 +173,7 @@ fun AudioOutputDeviceItem(
                             enabled = !isAnyRecording && !isAnyPlaying,
                             modifier = Modifier.weight(1f)
                         ) {
-                             Text(text = "Right")
+                             Text(stringResource(R.string.right))
                         }
                         Spacer(modifier = Modifier.width(8.dp))
                     }
@@ -181,7 +183,9 @@ fun AudioOutputDeviceItem(
                         enabled = !isAnyRecording && !isAnyPlaying,
                         modifier = Modifier.weight(1f)
                     ) {
-                         Text(text = if (isStereoSupported) "Both" else "Play")
+                         Text(if (isStereoSupported)
+                                stringResource(R.string.both)
+                                else stringResource(R.string.play))
                     }
                 }
             }
@@ -208,7 +212,7 @@ fun AudioInputDeviceItem(
             )
             if (isRecording) {
                 Text(
-                    text = "Amplitude: $amplitude",
+                    text = stringResource(R.string.amplitude) + ": $amplitude",
                     style = MiuixTheme.textStyles.body2
                 )
             }
@@ -218,7 +222,9 @@ fun AudioInputDeviceItem(
                 onClick = onRecord,
                 enabled = !isAnyPlaying && (isRecording || !isAnyRecording)
             ) {
-                 Text(text = if (isRecording) "Stop" else "Record")
+                 Text(if (isRecording)
+                        stringResource(R.string.stop)
+                     else stringResource(R.string.record))
             }
         }
     }

@@ -26,7 +26,7 @@ fun TopAppBarSecondary(title: String, action: () -> Unit) {
             IconButton(onClick = action) {
                 Icon(
                     imageVector = MiuixIcons.Back,
-                    contentDescription = "Back"
+                    contentDescription = stringResource(R.string.back)
                 )
             }
         }

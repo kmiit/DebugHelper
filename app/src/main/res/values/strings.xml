@@ -63,4 +63,20 @@
     <string name="audio">Audio</string>
     <string name="camera">Camera</string>
     <string name="gnss">GNSS</string>
+    <string name="output_devices">Output Devices</string>
+    <string name="input_devices">Input Devices</string>
+    <string name="stop">Stop</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="both">Both</string>
+    <string name="play">Play</string>
+    <string name="record">Record</string>
+    <string name="amplitude">Amplitude</string>
+    <string name="previewing">Previewing</string>
+    <string name="preview">Preview</string>
+    <string name="available_cameras">Available Cameras</string>
+    <string name="close_preview">Close Preview</string>
+    <string name="camera_id">Camera ID</string>
+    <string name="resolution">Resolution</string>
+    <string name="back">Back</string>
 </resources>
