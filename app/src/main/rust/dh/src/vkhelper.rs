@@ -1,21 +1,22 @@
-use jni::JNIEnv;
-use jni::objects::JClass;
-use jni::sys::jstring;
+use jni::{ JNIEnv, objects::{ JClass, JString }, sys::jstring };
+use jni_fn::jni_fn;
 use vulkano::instance::{Instance, InstanceCreateInfo};
 use vulkano::VulkanLibrary;
 
-#[unsafe(no_mangle)]
-pub extern "system" fn Java_top_kmiit_debughelper_utils_GpuUtils_getVulkanVersionNative<'local>(
-    env: JNIEnv<'local>,
-    _class: JClass<'local>,
+#[jni_fn("top.kmiit.debughelper")]
+pub fn getVulkanVersionNative (
+    env: JNIEnv,
+    _class: JClass,
+    _name: JString
 ) -> jstring {
     let version_str = match get_physical_device_version() {
         Ok(v) => v,
         Err(_) => "unknown".to_string(),
     };
 
-    let output = env.new_string(version_str).expect("Couldn't create java string!");
-    output.into_raw()
+    env.new_string(version_str)
+        .expect("Couldn't create java string!")
+        .into_raw()
 }
 
 fn get_physical_device_version() -> Result<String, Box<dyn std::error::Error>> {
