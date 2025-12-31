@@ -6,24 +6,19 @@ import top.kmiit.debughelper.R
 import top.yukonga.miuix.kmp.basic.NavigationBar
 import top.yukonga.miuix.kmp.basic.NavigationItem
 import top.yukonga.miuix.kmp.icon.MiuixIcons
-import top.yukonga.miuix.kmp.icon.icons.basic.Check
-import top.yukonga.miuix.kmp.icon.icons.useful.Info
-import top.yukonga.miuix.kmp.icon.icons.useful.Order
+import top.yukonga.miuix.kmp.icon.basic.Check
+import top.yukonga.miuix.kmp.icon.extended.Info
+import top.yukonga.miuix.kmp.icon.extended.Album
 
 @Composable
 fun NavigationBar(
     selectedIndex: Int,
     onItemSelected: (Int) -> Unit
 ) {
-
-    val pages = listOf(
-        stringResource(R.string.info),
-        stringResource(R.string.test),
-        stringResource(R.string.about))
     val items = listOf(
-        NavigationItem(stringResource(R.string.info), MiuixIcons.Useful.Order),
+        NavigationItem(stringResource(R.string.info), MiuixIcons.Album),
         NavigationItem(stringResource(R.string.test), MiuixIcons.Basic.Check),
-        NavigationItem(stringResource(R.string.about), MiuixIcons.Useful.Info)
+        NavigationItem(stringResource(R.string.about), MiuixIcons.Info)
     )
     return NavigationBar(
         items = items,

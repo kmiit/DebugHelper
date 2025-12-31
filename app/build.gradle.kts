@@ -1,6 +1,3 @@
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 val appName: String = "DebugHelper"
 val pkgName: String = "top.kmiit.debughelper"
 val verCode: Int = getVersionCode()
@@ -8,21 +5,35 @@ val verName: String = "0.0.1"
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.rust.android)
+    kotlin("android")
+}
+
+dependencies {
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.foundation.layout)
+    implementation(libs.androidx.foundation)
+    implementation(libs.miuix.android)
+    implementation(libs.hiddenapibypass)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.miuix.icons.android)
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
 }
 
 android {
-    namespace = pkgName
     compileSdk = 36
     compileSdkMinor = 1
+    namespace = pkgName
 
     defaultConfig {
         applicationId = pkgName
         minSdk = 33
         versionCode = verCode
         versionName = verName
-        targetSdk = 36
     }
 
     buildTypes {
@@ -39,18 +50,25 @@ android {
         sourceCompatibility = JavaVersion.VERSION_24
         targetCompatibility = JavaVersion.VERSION_24
     }
-    packaging {
-        applicationVariants.all {
-            outputs.all {
-                (this as BaseVariantOutputImpl).outputFileName = "$appName-v$versionName($versionCode)-$name.apk"
-            }
-        }
-    }
+    ndkVersion = "29.0.14206865"
 }
 
-kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_24)
+base {
+    archivesName.set(
+        "${appName}-v${verName}(${verCode})"
+    )
+}
+
+cargo {
+    profile = "release"
+    module  = "src/main/rust/dh"
+    libname = "dh"
+    targets = listOf("arm64", "x86_64")
+}
+
+tasks.configureEach {
+    if (name == "javaPreCompileDebug" || name == "javaPreCompileRelease") {
+        dependsOn("cargoBuild")
     }
 }
 
@@ -60,13 +78,3 @@ fun getGitCommitCount(): Int {
 }
 
 fun getVersionCode(): Int = getGitCommitCount()
-
-
-dependencies {
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.foundation.layout)
-    implementation(libs.androidx.foundation)
-    implementation(libs.miuix.android)
-    implementation(libs.hiddenapibypass)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-}
