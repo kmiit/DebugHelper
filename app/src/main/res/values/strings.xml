@@ -88,4 +88,9 @@
     <string name="constellation_galileo">GALILEO</string>
     <string name="constellation_irnss">IRNSS</string>
     <string name="nfc">NFC</string>
+    <string name="is_secure_nfc_supported">Support Secure nfc</string>
+    <string name="is_secure_nfc_enabled">Secure NFC enabled</string>
+    <string name="is_nfc_enabled">NFC enabled</string>
+    <string name="nfc_tag">NFC tag</string>
+    <string name="waiting">Waiting...</string>
 </resources>

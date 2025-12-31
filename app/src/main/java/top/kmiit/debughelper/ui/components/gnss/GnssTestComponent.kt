@@ -60,7 +60,7 @@ fun GNSSTestComponent(
             .nestedScroll(scrollBehavior.nestedScrollConnection)
     ) {
         Card(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxWidth(),
         ) {
             LazyColumn {
                 item {
