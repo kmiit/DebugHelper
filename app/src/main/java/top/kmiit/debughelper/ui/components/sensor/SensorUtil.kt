@@ -1,4 +1,4 @@
-package top.kmiit.debughelper.ui.components
+package top.kmiit.debughelper.ui.components.sensor
 
 import android.content.Context
 import android.hardware.Sensor

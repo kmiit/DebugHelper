@@ -1,4 +1,4 @@
-package top.kmiit.debughelper.ui.components
+package top.kmiit.debughelper.ui.components.camera
 
 import android.Manifest
 import android.content.Context
@@ -9,6 +9,8 @@ import android.widget.LinearLayout
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.OptIn
+import androidx.camera.camera2.interop.Camera2CameraInfo
+import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -39,8 +41,6 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.suspendCancellableCoroutine
 import top.kmiit.debughelper.R
-import top.kmiit.debughelper.ui.viewmodel.CameraInfoItem
-import top.kmiit.debughelper.ui.viewmodel.CameraTestViewModel
 import top.yukonga.miuix.kmp.basic.Button
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
@@ -50,7 +50,7 @@ import kotlin.coroutines.resume
 
 const val TAG = "CameraTest"
 
-@OptIn(androidx.camera.camera2.interop.ExperimentalCamera2Interop::class)
+@OptIn(ExperimentalCamera2Interop::class)
 @Composable
 fun CameraTestComponent(
     scrollBehavior: ScrollBehavior,
@@ -128,7 +128,7 @@ fun CameraTestComponent(
                             .addCameraFilter { cameraInfos ->
                                 cameraInfos.filter { cameraInfo ->
                                     try {
-                                        val id = androidx.camera.camera2.interop.Camera2CameraInfo.from(cameraInfo).cameraId
+                                        val id = Camera2CameraInfo.from(cameraInfo).cameraId
                                         id == selectedCameraId
                                     } catch (_: Exception) {
                                         false

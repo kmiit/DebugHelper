@@ -1,4 +1,4 @@
-package top.kmiit.debughelper.ui.components
+package top.kmiit.debughelper.ui.components.sensor
 
 import android.hardware.Sensor
 import androidx.compose.foundation.layout.Column
@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import top.kmiit.debughelper.R
-import top.kmiit.debughelper.ui.viewmodel.SensorViewModel
+import top.kmiit.debughelper.ui.components.sensor.SensorViewModel
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.HorizontalDivider
 import top.yukonga.miuix.kmp.basic.ScrollBehavior

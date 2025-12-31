@@ -1,4 +1,4 @@
-package top.kmiit.debughelper.ui.components
+package top.kmiit.debughelper.ui.components.audio
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -26,8 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import top.kmiit.debughelper.R
-import top.kmiit.debughelper.ui.viewmodel.AudioChannel
-import top.kmiit.debughelper.ui.viewmodel.AudioTestViewModel
 import top.yukonga.miuix.kmp.basic.Button
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.ScrollBehavior

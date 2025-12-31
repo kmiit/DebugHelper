@@ -15,9 +15,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import top.kmiit.debughelper.R
-import top.kmiit.debughelper.ui.components.BasicInfoComponent
-import top.kmiit.debughelper.ui.components.DisplayInfoComponent
-import top.kmiit.debughelper.ui.components.SocInfoComponent
+import top.kmiit.debughelper.ui.components.basic.BasicInfoComponent
+import top.kmiit.debughelper.ui.components.basic.DisplayInfoComponent
+import top.kmiit.debughelper.ui.components.basic.SocInfoComponent
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
 import top.yukonga.miuix.kmp.basic.TabRow
 import top.yukonga.miuix.kmp.basic.Text

@@ -1,7 +1,8 @@
-package top.kmiit.debughelper.ui.viewmodel
+package top.kmiit.debughelper.ui.components.camera
 
 import android.app.Application
 import android.content.Context
+import android.graphics.ImageFormat
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import androidx.lifecycle.AndroidViewModel
@@ -43,7 +44,7 @@ class CameraTestViewModel(application: Application) : AndroidViewModel(applicati
                 
                 // Get sensor resolution
                 val map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
-                val sizes = map?.getOutputSizes(android.graphics.ImageFormat.JPEG)
+                val sizes = map?.getOutputSizes(ImageFormat.JPEG)
                 val maxResolution = sizes?.maxByOrNull { it.width * it.height }
                 val resolutionStr = if (maxResolution != null) {
                     "${maxResolution.width}x${maxResolution.height} (${(maxResolution.width * maxResolution.height) / 1000000}MP)"

@@ -87,4 +87,5 @@
     <string name="constellation_beidou">BEIDOU</string>
     <string name="constellation_galileo">GALILEO</string>
     <string name="constellation_irnss">IRNSS</string>
+    <string name="nfc">NFC</string>
 </resources>

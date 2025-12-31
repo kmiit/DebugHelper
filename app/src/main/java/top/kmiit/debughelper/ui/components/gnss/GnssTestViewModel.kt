@@ -1,4 +1,4 @@
-package top.kmiit.debughelper.ui.viewmodel
+package top.kmiit.debughelper.ui.components.gnss
 
 import android.Manifest
 import android.app.Application

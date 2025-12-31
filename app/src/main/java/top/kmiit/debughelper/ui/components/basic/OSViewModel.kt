@@ -1,4 +1,4 @@
-package top.kmiit.debughelper.ui.viewmodel
+package top.kmiit.debughelper.ui.components.basic
 
 import android.app.Application
 import android.os.Build
@@ -16,7 +16,8 @@ class OSViewModel(application: Application) : AndroidViewModel(application) {
     val securityPatch: String = Build.VERSION.SECURITY_PATCH
     val vendorSpl: String = PropFactory.get("ro.vendor.build.security_patch", unknown)
     val fingerprint: String = Build.FINGERPRINT
-    val buildTime: String = Instant.ofEpochMilli(Build.TIME).atZone(ZoneId.of("UTC")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss 'UTC'"))
+    val buildTime: String = Instant.ofEpochMilli(Build.TIME).atZone(ZoneId.of("UTC")).format(
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss 'UTC'"))
     val activeSlot: String = PropFactory.get("ro.boot.slot_suffix", unknown)
     val kernelVersion: String = System.getProperty("os.version") ?: unknown
 }

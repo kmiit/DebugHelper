@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import top.kmiit.debughelper.R
-import top.kmiit.debughelper.ui.components.Batch
-import top.kmiit.debughelper.ui.components.ListDetails
+import top.kmiit.debughelper.ui.components.sensor.Batch
+import top.kmiit.debughelper.ui.components.sensor.ListDetails
 import top.kmiit.debughelper.ui.components.TopAppBarSecondary
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.Scaffold

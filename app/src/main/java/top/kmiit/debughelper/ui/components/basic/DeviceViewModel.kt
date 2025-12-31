@@ -1,4 +1,4 @@
-package top.kmiit.debughelper.ui.viewmodel
+package top.kmiit.debughelper.ui.components.basic
 
 import android.app.Application
 import android.os.Build

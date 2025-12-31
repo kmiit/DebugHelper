@@ -16,10 +16,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import top.kmiit.debughelper.R
-import top.kmiit.debughelper.ui.components.AudioTestComponent
-import top.kmiit.debughelper.ui.components.CameraTestComponent
-import top.kmiit.debughelper.ui.components.GNSSTestComponent
-import top.kmiit.debughelper.ui.components.SensorTestComponent
+import top.kmiit.debughelper.ui.components.audio.AudioTestComponent
+import top.kmiit.debughelper.ui.components.camera.CameraTestComponent
+import top.kmiit.debughelper.ui.components.gnss.GNSSTestComponent
+import top.kmiit.debughelper.ui.components.nfc.NfcTestComponent
+import top.kmiit.debughelper.ui.components.sensor.SensorTestComponent
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
 import top.yukonga.miuix.kmp.basic.TabRow
 import top.yukonga.miuix.kmp.basic.Text
@@ -37,6 +38,7 @@ fun TestPage(
         stringResource(R.string.audio),
         stringResource(R.string.camera),
         stringResource(R.string.gnss),
+        stringResource(R.string.nfc),
     )
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope = rememberCoroutineScope()
@@ -73,6 +75,7 @@ fun TestPage(
                 1 -> AudioTestComponent(scrollBehavior)
                 2 -> CameraTestComponent(scrollBehavior)
                 3 -> GNSSTestComponent(scrollBehavior)
+                4 -> NfcTestComponent(scrollBehavior)
                 else -> Text("test")
             }
         }
