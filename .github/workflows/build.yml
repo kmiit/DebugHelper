@@ -1,0 +1,38 @@
+name: Build App
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK
+        uses: oracle-actions/setup-java@v1
+        with:
+          website: oracle.com
+          release: 24
+          version: 24.0.1
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+          target: aarch64-linux-android x86_64-linux-android
+
+      - name: Build with Gradle
+        run: ./gradlew assembleRelease
+
+      - name: Save artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: android-app
+          path: app/build/outputs/apk/release/*.apk
