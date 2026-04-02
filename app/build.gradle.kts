@@ -11,18 +11,18 @@ plugins {
 
 dependencies {
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.foundation.layout)
-    implementation(libs.androidx.foundation)
-    implementation(libs.miuix.android)
-    implementation(libs.hiddenapibypass)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.miuix.icons.android)
-    implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
-    implementation(libs.google.guava)
+    implementation(libs.androidx.foundation.layout)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.foundation)
+    implementation(libs.google.guava)
+    implementation(libs.hiddenapibypass)
+    implementation(libs.miuix.ui)
+    implementation(libs.miuix.icons)
     implementation(libs.miuix.navigation3.ui)
 }
 
@@ -48,9 +48,7 @@ android {
     }
 
     compileSdk {
-        version = release(37) {
-            minorApiLevel = 0
-        }
+        version = release(37)
     }
 
     ndkVersion = "29.0.14206865"

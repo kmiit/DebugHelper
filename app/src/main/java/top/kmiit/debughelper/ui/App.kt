@@ -2,6 +2,7 @@ package top.kmiit.debughelper.ui
 
 import android.hardware.Sensor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -20,13 +21,29 @@ import top.yukonga.miuix.kmp.theme.ThemeController
 @Composable
 fun App(
 ) {
+    val themeController = remember { ThemeController(ColorSchemeMode.System) }
+
     MiuixTheme(
-        controller = ThemeController(ColorSchemeMode.System),
+        controller = themeController,
     ) {
         val scrollBehavior = MiuixScrollBehavior()
         val backStack = remember { mutableStateListOf<AppNavKey>(AppNavKey.Info) }
         var selectedSensor by remember { mutableStateOf<Sensor?>(null) }
-        val currentRoute = backStack.lastOrNull() ?: AppNavKey.Info
+        val currentRoute by remember {
+            derivedStateOf { backStack.lastOrNull() ?: AppNavKey.Info }
+        }
+        val onNavigate = remember {
+            { targetRoute: AppNavKey ->
+                selectedSensor = null
+                if (backStack.lastOrNull() != targetRoute) {
+                    backStack.clear()
+                    backStack.add(targetRoute)
+                }
+            }
+        }
+        val onSelectedSensorChange = remember {
+            { sensor: Sensor? -> selectedSensor = sensor }
+        }
 
         Scaffold(
             topBar = {
@@ -37,13 +54,7 @@ fun App(
             bottomBar = {
                 NavigationBar(
                     currentRoute = currentRoute,
-                    onNavigate = { targetRoute ->
-                        selectedSensor = null
-                        if (backStack.lastOrNull() != targetRoute) {
-                            backStack.clear()
-                            backStack.add(targetRoute)
-                        }
-                    }
+                    onNavigate = onNavigate
                 )
             }
         ) { paddingValues ->
@@ -52,9 +63,7 @@ fun App(
                 selectedSensor = selectedSensor,
                 paddingValues = paddingValues,
                 scrollBehavior = scrollBehavior,
-                onSelectedSensorChange = { sensor ->
-                    selectedSensor = sensor
-                }
+                onSelectedSensorChange = onSelectedSensorChange
             )
         }
     }

@@ -31,6 +31,7 @@ fun SocInfoComponent(
     gpuVM: GpuViewModel = viewModel()
 ) {
     val scrollState = rememberScrollState()
+    val cpuInfo by cpuVM.cpuInfo.collectAsState()
     val gpuInfo by gpuVM.gpuInfo.collectAsState()
 
     Column(
@@ -49,10 +50,10 @@ fun SocInfoComponent(
                 style = MiuixTheme.textStyles.title1,
                 fontWeight = FontWeight.Bold
             )
-            ShowItem(stringResource(R.string.platform), cpuVM.soc)
-            ShowItem(stringResource(R.string.abi_list), cpuVM.abiList)
-            ShowItem(stringResource(R.string.governor), cpuVM.governor)
-            ShowItem(stringResource(R.string.cpu_cores), cpuVM.cpuCores.toString())
+            ShowItem(stringResource(R.string.platform), cpuInfo.soc)
+            ShowItem(stringResource(R.string.abi_list), cpuInfo.abiList)
+            ShowItem(stringResource(R.string.governor), cpuInfo.governor)
+            ShowItem(stringResource(R.string.cpu_cores), cpuInfo.cpuCores.toString())
         }
         Spacer(modifier = Modifier.height(8.dp))
         Card(

@@ -176,12 +176,11 @@ fun Sensor.HandleData(values: FloatArray) {
     when(this.type) {
         Sensor.TYPE_ACCELEROMETER,
         Sensor.TYPE_GRAVITY,
-        Sensor.TYPE_MAGNETIC_FIELD,
         Sensor.TYPE_GYROSCOPE,
         Sensor.TYPE_LINEAR_ACCELERATION,
+        Sensor.TYPE_MAGNETIC_FIELD,
+        Sensor.TYPE_ROTATION_VECTOR,
             -> HandleXYZ(values)
-        Sensor.TYPE_ORIENTATION -> HandleOrientation(values)
-
         else -> HandleDataCommon(values)
     }
 }
@@ -199,13 +198,6 @@ fun HandleXYZ(values: FloatArray) {
     ShowItem(stringResource(R.string.x_value), values[0])
     ShowItem(stringResource(R.string.y_value), values[1])
     ShowItem(stringResource(R.string.z_value), values[2])
-}
-
-@Composable
-fun HandleOrientation(values: FloatArray) {
-    ShowItem(stringResource(R.string.orientation), values[0])
-    ShowItem(stringResource(R.string.x_value), values[1])
-    ShowItem(stringResource(R.string.y_value), values[2])
 }
 
 fun Sensor.batchable(): Boolean {

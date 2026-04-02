@@ -1,6 +1,8 @@
 package top.kmiit.debughelper.ui.pages
 
 import android.hardware.Sensor
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,10 +26,12 @@ import top.kmiit.debughelper.ui.components.sensor.SensorTestComponent
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
 import top.yukonga.miuix.kmp.basic.TabRow
 import top.yukonga.miuix.kmp.basic.Text
+import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.utils.overScrollVertical
+
 @Composable
 fun TestPage(
-    paddingValues: PaddingValues, 
+    paddingValues: PaddingValues,
     scrollBehavior: ScrollBehavior,
     onTestSensor: (Sensor) -> Unit
 ) {
@@ -40,41 +44,48 @@ fun TestPage(
     )
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope = rememberCoroutineScope()
-
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .overScrollVertical()
-            .nestedScroll(scrollBehavior.nestedScrollConnection)
-            .padding(
-                top = paddingValues.calculateTopPadding(),
-                bottom = paddingValues.calculateBottomPadding()
-            ),
-    ) {
-        TabRow(
-            tabs = tabs,
-            selectedTabIndex = pagerState.currentPage,
-            onTabSelected = { index ->
-                coroutineScope.launch {
-                    pagerState.animateScrollToPage(index)
-                }
-            },
-            minWidth = 140.dp,
-            modifier = Modifier.padding(8.dp)
-        )
-
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.Top
+            .background(MiuixTheme.colorScheme.background)
+    )
+    {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .overScrollVertical()
+                .nestedScroll(scrollBehavior.nestedScrollConnection)
+                .padding(
+                    top = paddingValues.calculateTopPadding(),
+                    bottom = paddingValues.calculateBottomPadding()
+                ),
         ) {
-            when (it) {
-                0 -> SensorTestComponent(scrollBehavior, onTestSensor)
-                1 -> AudioTestComponent(scrollBehavior)
-                2 -> CameraTestComponent(scrollBehavior)
-                3 -> GNSSTestComponent(scrollBehavior)
-                4 -> NfcTestComponent(scrollBehavior)
-                else -> Text("test")
+            TabRow(
+                tabs = tabs,
+                selectedTabIndex = pagerState.currentPage,
+                onTabSelected = { index ->
+                    coroutineScope.launch {
+                            pagerState.scrollToPage(index)
+                    }
+                },
+                minWidth = 140.dp,
+                modifier = Modifier.padding(8.dp)
+            )
+
+            HorizontalPager(
+                beyondViewportPageCount = 0,
+                state = pagerState,
+                modifier = Modifier.fillMaxSize(),
+                verticalAlignment = Alignment.Top
+            ) {
+                when (it) {
+                    0 -> SensorTestComponent(scrollBehavior, onTestSensor)
+                    1 -> AudioTestComponent(scrollBehavior)
+                    2 -> CameraTestComponent(scrollBehavior)
+                    3 -> GNSSTestComponent(scrollBehavior)
+                    4 -> NfcTestComponent(scrollBehavior)
+                    else -> Text("test")
+                }
             }
         }
     }

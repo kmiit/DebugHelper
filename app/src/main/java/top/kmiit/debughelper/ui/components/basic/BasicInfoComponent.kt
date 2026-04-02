@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
@@ -29,6 +31,9 @@ fun BasicInfoComponent(
     osVM: OSViewModel = viewModel(),
 ) {
     val scrollState = rememberScrollState()
+    val deviceInfo by deviceVM.deviceInfo.collectAsState()
+    val osInfo by osVM.osInfo.collectAsState()
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,15 +50,15 @@ fun BasicInfoComponent(
                 style = MiuixTheme.textStyles.title1,
                 fontWeight = FontWeight.Bold
             )
-            ShowItem(stringResource(R.string.manufacturer), deviceVM.manufacturer)
-            ShowItem(stringResource(R.string.brand), deviceVM.brand)
-            ShowItem(stringResource(R.string.model), deviceVM.model)
-            ShowItem(stringResource(R.string.product), deviceVM.product)
-            ShowItem(stringResource(R.string.device_l), deviceVM.device)
-            deviceVM.prjname.takeIf { it.isNotEmpty() }?.let {
+            ShowItem(stringResource(R.string.manufacturer), deviceInfo.manufacturer)
+            ShowItem(stringResource(R.string.brand), deviceInfo.brand)
+            ShowItem(stringResource(R.string.model), deviceInfo.model)
+            ShowItem(stringResource(R.string.product), deviceInfo.product)
+            ShowItem(stringResource(R.string.device_l), deviceInfo.device)
+            deviceInfo.prjname.takeIf { it.isNotEmpty() }?.let {
                 ShowItem(stringResource(R.string.prjname), it)
             }
-            ShowItem(stringResource(R.string.unlocked), deviceVM.unlocked)
+            ShowItem(stringResource(R.string.unlocked), deviceInfo.unlocked)
         }
         Spacer(modifier = Modifier.height(8.dp))
         Card(
@@ -65,14 +70,14 @@ fun BasicInfoComponent(
                 style = MiuixTheme.textStyles.title1,
                 fontWeight = FontWeight.Bold
             )
-            ShowItem(stringResource(R.string.android_version), osVM.androidVersion)
-            ShowItem(stringResource(R.string.sdk_level), osVM.sdkLevel)
-            ShowItem(stringResource(R.string.security_patch), osVM.securityPatch)
-            ShowItem(stringResource(R.string.vendor_spl), osVM.vendorSpl)
-            ShowItem(stringResource(R.string.fingerprint), osVM.fingerprint)
-            ShowItem(stringResource(R.string.build_time), osVM.buildTime)
-            ShowItem(stringResource(R.string.active_slot), osVM.activeSlot)
-            ShowItem(stringResource(R.string.kernel_version), osVM.kernelVersion)
+            ShowItem(stringResource(R.string.android_version), osInfo.androidVersion)
+            ShowItem(stringResource(R.string.sdk_level), osInfo.sdkLevel)
+            ShowItem(stringResource(R.string.security_patch), osInfo.securityPatch)
+            ShowItem(stringResource(R.string.vendor_spl), osInfo.vendorSpl)
+            ShowItem(stringResource(R.string.fingerprint), osInfo.fingerprint)
+            ShowItem(stringResource(R.string.build_time), osInfo.buildTime)
+            ShowItem(stringResource(R.string.active_slot), osInfo.activeSlot)
+            ShowItem(stringResource(R.string.kernel_version), osInfo.kernelVersion)
         }
     }
 }

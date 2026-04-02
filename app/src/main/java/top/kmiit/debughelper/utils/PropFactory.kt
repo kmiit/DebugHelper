@@ -17,7 +17,6 @@ object PropFactory {
     }
 
     fun get(prop: String, def: String): String {
-        Log.e(this.javaClass.name, "get: $prop")
         return try {
             getMethod?.invoke(null, prop, def) as? String ?: def
         } catch (e: Exception) {
