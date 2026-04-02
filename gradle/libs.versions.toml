@@ -1,5 +1,5 @@
 [versions]
-agp = "8.13.2"
+agp = "9.1.0"
 hiddenapibypass = "6.1"
 kotlin = "2.3.20"
 miuixAndroid = "0.8.8"
@@ -7,7 +7,7 @@ activityCompose = "1.13.0"
 foundationLayout = "1.10.6"
 lifecycle = "2.10.0"
 navigation3Runtime = "1.0.1"
-rust = "0.9.6"
+rust = "0.6.0"
 camerax = "1.6.0"
 guava = "33.5.0-android"
 
@@ -31,4 +31,4 @@ google-guava = { module = "com.google.guava:guava", version.ref = "guava" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-rust-android = { id = "org.mozilla.rust-android-gradle.rust-android", version.ref = "rust" }
+android-rust = { id = "io.github.MatrixDev.android-rust", version.ref = "rust" }

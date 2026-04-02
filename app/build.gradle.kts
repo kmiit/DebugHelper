@@ -6,8 +6,7 @@ val verName: String = "0.0.1"
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.rust.android)
-    kotlin("android")
+    alias(libs.plugins.android.rust)
 }
 
 dependencies {
@@ -28,8 +27,6 @@ dependencies {
 }
 
 android {
-    compileSdk = 36
-    compileSdkMinor = 1
     namespace = pkgName
 
     defaultConfig {
@@ -49,10 +46,13 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_24
-        targetCompatibility = JavaVersion.VERSION_24
+
+    compileSdk {
+        version = release(36) {
+            minorApiLevel = 1
+        }
     }
+
     ndkVersion = "29.0.14206865"
 }
 
@@ -62,17 +62,15 @@ base {
     )
 }
 
-cargo {
-    profile = "release"
-    module  = "src/main/rust/dh"
-    libname = "dh"
-    targets = listOf("arm64", "x86_64")
+androidRust {
+    module("dh") {
+        path = file("src/main/rust/dh")
+        targets = listOf("arm64", "x86_64")
+    }
 }
 
-tasks.configureEach {
-    if (name == "javaPreCompileDebug" || name == "javaPreCompileRelease") {
-        dependsOn("cargoBuild")
-    }
+kotlin {
+    jvmToolchain(24)
 }
 
 fun getGitCommitCount(): Int {
